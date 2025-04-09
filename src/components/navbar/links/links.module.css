@@ -1,0 +1,45 @@
+.links__container {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap: 15px;
+}
+
+.mobileLinks {
+    display: none;
+}
+
+.menuButton {
+    display: none;
+}
+
+@media (max-width: 768px) {
+    .links__container {
+        display: none;
+        width: 640px;
+        width: 100%;
+    }
+
+    .mobileLinks {
+        position: absolute;
+        top: 45px;
+        right: 10%;
+        width: 40%;
+        height: calc(100vh - 45px);
+        background-color: gray;
+        /* background-color: var(--bg); */
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        gap: 10px;
+        transition: height 0.5s ease-in-out;
+        color: white;
+    }
+
+    .menuButton {
+        display: block;
+        cursor: pointer;
+        font-weight: bold;
+    }
+}
