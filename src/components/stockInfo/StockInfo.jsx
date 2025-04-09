@@ -5,7 +5,7 @@ import axios from 'axios'
 import './stockInfo.scss'
 // import { notFound } from 'next/navigation'
 
-export default function StockInfo({ticker}) {
+export default function StockInfo({ ticker }) {
     const [stock, setStock] = useState(null)
     const [loading, setLoading] = useState(true)
     const [error, setError] = useState(null)
@@ -44,8 +44,8 @@ export default function StockInfo({ticker}) {
     if (noDataMessage) return <p className="message warning">{noDataMessage}</p>
 
     return (
-        <main className="stocks__container">
-            <h1 className="title">{ticker} Details</h1>
+        <main className="stock-details__container">
+            <h1 className="title">{stock.shortName} ({ticker})</h1>
             {noDataMessage}
             <p><strong>Price:</strong> ${stock.price}</p>
             <p><strong>Change:</strong> {stock.change}</p>
