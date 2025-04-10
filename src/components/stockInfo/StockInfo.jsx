@@ -1,22 +1,22 @@
 'use client'
 import { useEffect, useState } from 'react'
-// import { useParams } from 'next/navigation'
 import axios from 'axios'
 import './stockInfo.scss'
-// import { notFound } from 'next/navigation'
 
 export default function StockInfo({ ticker }) {
     const [stock, setStock] = useState(null)
     const [loading, setLoading] = useState(true)
     const [error, setError] = useState(null)
     const [noDataMessage, setNoDataMessage] = useState('')
-
+    
+    const BASE_URL = process.env.NEXT_PUBLIC_API_URL || 'http://localhost:8000'
+    
     useEffect(() => {
         if (!ticker) return
         setLoading(true)
         const fetchStocksData = async () => {
             try {
-                const res = await axios.get(`http://localhost:8000/stocks/${ticker}`) // FastAPI endpoint
+                const res = await axios.get(`${BASE_URL}/stocks/${ticker}`) // FastAPI endpoint
                 if (!res.data || Object.keys(res.data).length === 0) {
                     setNoDataMessage('No data fetched')
                     setStock(null)
