@@ -2,11 +2,13 @@
   "name": "data-tailr-test",
   "version": "0.1.0",
   "private": true,
+  "type": "module",
   "scripts": {
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
-    "lint": "next lint"
+    "lint": "next lint",
+    "cy:open": "cypress open"
   },
   "dependencies": {
     "axios": "^1.8.4",
@@ -17,7 +19,13 @@
   },
   "devDependencies": {
     "@eslint/eslintrc": "^3",
+    "@testing-library/react": "^16.3.0",
+    "@types/aria-query": "^5.0.4",
+    "cypress": "^13.17.0",
     "eslint": "^9",
-    "eslint-config-next": "15.2.5"
+    "eslint-config-next": "15.2.5",
+    "msw": "^2.7.3",
+    "vitest": "^2.1.9",
+    "whatwg-fetch": "^3.6.20"
   }
 }

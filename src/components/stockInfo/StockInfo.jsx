@@ -1,6 +1,6 @@
 'use client'
 import { useEffect, useState } from 'react'
-import axios from 'axios'
+// import axios from 'axios'
 import './stockInfo.scss'
 
 export default function StockInfo({ ticker }) {
@@ -8,20 +8,22 @@ export default function StockInfo({ ticker }) {
     const [loading, setLoading] = useState(true)
     const [error, setError] = useState(null)
     const [noDataMessage, setNoDataMessage] = useState('')
-    
+
     const BASE_URL = process.env.NEXT_PUBLIC_API_URL || 'http://localhost:8000'
-    
+
     useEffect(() => {
         if (!ticker) return
         setLoading(true)
         const fetchStocksData = async () => {
             try {
-                const res = await axios.get(`${BASE_URL}/stocks/${ticker}`) // FastAPI endpoint
-                if (!res.data || Object.keys(res.data).length === 0) {
+                const res = await fetch(`${BASE_URL}/stocks/${ticker}`) // FastAPI endpoint
+                if (!res.ok) throw new Error(`HTTP error! status: ${res.status}`)
+                const data = await res.json()
+                if (!data || Object.keys(data).length === 0) {
                     setNoDataMessage('No data fetched')
                     setStock(null)
                 } else {
-                    setStock(res.data)
+                    setStock(data)
                     setNoDataMessage('')
                 }
             }
@@ -45,7 +47,7 @@ export default function StockInfo({ ticker }) {
 
     return (
         <main className="stock-details__container">
-            <h1 className="title">{stock.shortName} ({ticker})</h1>
+            <h1  className="title">{stock.shortName} ({ticker})</h1>
             {noDataMessage}
             <p><strong>Price:</strong> ${stock.price}</p>
             <p><strong>Change:</strong> {stock.change}</p>

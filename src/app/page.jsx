@@ -22,14 +22,14 @@ export default function HomePage() {
           {tickers.map((ticker) => (
             <li key={ticker} className="stock-item">
               {/* <Link href={`/stocks/${ticker}`}>{ticker}</Link> */}
-              <div className='stock__link' onClick={() => handleClick(ticker)}>{ticker}</div>
+              <div  data-testid={`stock-link-${ticker}`} className='stock__link' onClick={() => handleClick(ticker)}>{ticker}</div>
             </li>
 
           ))}
         </ul>
       </div>
       {isOpen &&
-        <div className='stock__details'>
+        <div data-testid="stock-details" className='stock__details'>
           <StockInfo ticker={chosenStock} />
         </div>
       }

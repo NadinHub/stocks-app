@@ -9,20 +9,24 @@ const Links = () => {
 
     return (
         <div>
-            
+
             <div className={styles.links__container} >
-                <NavLink item={{ path: "/", title: "Homepage" }} />
+                <NavLink prefix="desktop-link" 
+                item={{ path: "/", title: "Homepage" }} />
                 <NavLink item={{ path: "https://www.finance.yahoo.com", title: "Yahoo Finance" }} />
                 <NavLink item={{ path: "https://www.datatailr.com", title: "Datatailr" }} />
             </div>
 
 
-            <button className={styles.menuButton} onClick={() => setOpen((prev) => !prev)}>Menu</button>
+            <button data-testid="open-sidebar-btn"
+                className={styles.menuButton} onClick={() => setOpen((prev) => !prev)}>Menu</button>
+
             {
-                open && <div className={styles.mobileLinks}>
-                    <NavLink item={{ path: "/", title: "Homepage" }} />
-                    <NavLink item={{ path: "https://www.finance.yahoo.com", title: "Yahoo Finance" }} />
-                    <NavLink item={{ path: "https://www.datatailr.com", title: "Datatailr" }} />
+                open &&
+                <div data-testid="mobile-sidebar" className={styles.mobileLinks}>
+                    <NavLink prefix="mobile-link" item={{ path: "/", title: "Homepage" }} />
+                    <NavLink prefix="mobile-link" item={{ path: "https://www.finance.yahoo.com", title: "Yahoo Finance" }} />
+                    <NavLink prefix="mobile-link" item={{ path: "https://www.datatailr.com", title: "Datatailr" }} />
 
                 </div>
             }

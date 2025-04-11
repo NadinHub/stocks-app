@@ -17,8 +17,40 @@ bun dev
 Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
 
 
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+.env.local and .env.production were included in purpose in git/github, because it's a test project. In real-life projects they are not included in git/github.
+
+For UI testing (E2E testintg) uses Cypress.
+https://docs.cypress.io/app/get-started/open-the-app 
+
+npm install cypress --save-dev
+OR
+npm install -D cypress
+
+Start server (it needs to cypress works):
+npm run dev
+
+inside a project folder (root) call this command (if there is "cy:open": "cypress open" in Package.json)
+npm run cy:open
+OR
+npm run cypress:open
+
+The launchpad will be opened to test.
+
+To test useing Cypress the app should be running (npm run dev).
+
+https://docs.cypress.io/app/end-to-end-testing/writing-your-first-end-to-end-test 
+
+For unit testing - Vitest: npm i -D vitest
+in package.json: "test": "vitest"
+Unit test is not implemented in the project.
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
 Imformation about Yahoo Finance API (ticker - info)
 https://yfinance-python.org/reference/api/yfinance.Ticker.html#yfinance.Ticker
+
+The example of the data recieving from Yahoo Finance API (ticker - info):
 
 data {'
 address1': '1600 Amphitheatre Parkway', 
