@@ -19,6 +19,7 @@ export default function StockInfo({ ticker }) {
                 const res = await fetch(`${BASE_URL}/stocks/${ticker}`) // FastAPI endpoint
                 if (!res.ok) throw new Error(`HTTP error! status: ${res.status}`)
                 const data = await res.json()
+                console.log('stockdata = ', data)
                 if (!data || Object.keys(data).length === 0) {
                     setNoDataMessage('No data fetched')
                     setStock(null)
@@ -46,12 +47,21 @@ export default function StockInfo({ ticker }) {
     if (noDataMessage) return <p className="message warning">{noDataMessage}</p>
 
     return (
-        <main className="stock-details__container">
-            <h1  className="title">{stock.shortName} ({ticker})</h1>
+        <main className="stockinfo__container">
+            <div className='stockinfo__title'>
+                {stock?.logo && (
+                    <div className="stockinfo-logo__wrapper">
+                        <img src={stock.logo} alt={`${stock?.name || 'Stock'} logo`} />
+                    </div>
+                )}
+                <div className='stockinfo__shortname'><h1 className="stockinfo__h1">{stock.shortName}</h1> <div>({ticker})</div></div>
+            </div>
             {noDataMessage}
-            <p><strong>Price:</strong> ${stock.price}</p>
-            <p><strong>Change:</strong> {stock.change}</p>
-            <p><strong>Volume:</strong> {stock.volume}</p>
+            <div className='stockinfo__details'>
+                <p><span>Price:</span> ${stock.price}</p>
+                <p><span>Change:</span> {stock.change}</p>
+                <p><span>Volume:</span> {stock.volume}</p>
+            </div>
         </main>
     )
 }
