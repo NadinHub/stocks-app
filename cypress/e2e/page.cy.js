@@ -8,23 +8,24 @@ describe('navigation test', () => {
     cy.visit('/')
   })
 
-  it('displays all stock tickers', () => {
+  it('displays all stock tickers on homepage', () => {
     tickers.forEach(ticker => {
       cy.get(`[data-testid="stock-link-${ticker}"]`).should('be.visible')
     })
   })
 
-  it('opens StockInfo when AAPL is clicked', () => {
-    cy.get('[data-testid="stock-link-AAPL"]').click()
-    cy.get(`[data-testid="stock-details"]`).should('be.visible').and('contain', 'AAPL')
-  })
-
   tickers.forEach(ticker => {
-    it(`opens StockInfo when ${ticker} is clicked`, () => {
-      cy.get(`[data-testid="stock-link-${ticker}"]`).click()
-      cy.get(`[data-testid="stock-details"]`).should('be.visible').and('contain', ticker)
-    })
-  })
+    it(`navigates to ${ticker} details page and displays StockInfo`, () => {
+      cy.get(`[data-testid="stock-link-${ticker}"]`).click();
+
+      // Wait for navigation to complete
+      cy.url().should('include', `/stocks/${ticker}`);
+
+      // Verify stock details are visible on the new page
+      cy.get('[data-testid="stock-details"]').should('be.visible').and('contain', ticker);
+    });
+  });
+
 })
 
 describe('Menu test', () => {
