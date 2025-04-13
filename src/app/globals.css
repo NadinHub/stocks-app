@@ -29,12 +29,6 @@ a {
   text-decoration: none;
 }
 
-/* @media (prefers-color-scheme: dark) {
-  html {
-    color-scheme: dark;
-  }
-} */
-
 .container {
   width: 1536px;
   margin: auto;
@@ -76,6 +70,5 @@ a {
   .container {
     max-width: 475px;
     width: auto;
-    /* border: 1px solid red; */
   }
 }

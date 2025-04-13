@@ -17,11 +17,9 @@ export default function HomePage() {
 
     <main className="page__container">
       <div>
-        {/* <h1 className="title">Stock List</h1> */}
         <ul className="stock-list">
           {tickers.map((ticker) => (
             <li key={ticker} className="stock-item">
-              {/* <Link href={`/stocks/${ticker}`}>{ticker}</Link> */}
               <div  data-testid={`stock-link-${ticker}`} className='stock__link' onClick={() => handleClick(ticker)}>{ticker}</div>
             </li>
 
