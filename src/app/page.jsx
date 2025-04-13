@@ -1,15 +1,12 @@
 'use client'
 import './page.scss'
 import { useEffect, useState } from 'react'
-import { useRouter } from 'next/navigation'
 import Link from 'next/link'
+
 const tickers = ['AAPL', 'GOOG', 'TSLA', 'AMZN', 'MSFT', 'V', 'NVDA', 'XOM']
 const BASE_URL = process.env.NEXT_PUBLIC_API_URL || 'http://localhost:8000'
 
 export default function HomePage() {
-
-  const router = useRouter()
-  const [chosenStock, setChosenStock] = useState(null)
 
   const [stocks, setStocks] = useState(null)
   const [loading, setLoading] = useState(true)
@@ -40,14 +37,6 @@ export default function HomePage() {
     fetchAllStocks()
   }, [])
 
-
-  const handleClick = (ticker) => {
-    console.log('Clicked:', ticker)
-    setChosenStock(ticker)
-    // Navigate to dynamic route /stock/[ticker]
-    router.push(`/stock/${ticker}`)
-  }
-
   const Card = ({ ticker }) => {
     const stock = stocks?.[ticker]
 
@@ -72,33 +61,6 @@ export default function HomePage() {
       </Link>
     )
   }
-
-  // const Card = ({ ticker }) => {
-  //   const stock = stocks?.[ticker]
-
-  //   if (!stock) {
-  //     return (
-
-  //       <div className="stock__item" data-testid={`stock-link-${ticker}`}>
-  //         <p className="stock__ticker">{ticker}</p>
-  //         <p>Loading...</p>
-  //       </div>
-  //     )
-  //   }
-
-  //   return (
-  //     <div
-  //       data-testid={`stock-link-${ticker}`}
-  //       className="stock__item"
-  //       onClick={() => handleClick(ticker)}
-  //     >
-  //       <p className="stock__name">{stock.shortName}</p>
-  //       <p className="stock__ticker">{ticker}</p>
-  //       <p className="stock__price"><span>Price:</span> ${stock.price}</p>
-  //     </div>
-  //   )
-  // }
-
 
   return (
     <main className="page__container">
