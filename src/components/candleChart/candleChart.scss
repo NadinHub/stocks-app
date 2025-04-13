@@ -1,0 +1,16 @@
+.candle-chart__wrapper{
+    width: 100%;
+    height: 300px; // default height
+    max-width: 100%;
+    position: relative;
+    overflow: hidden;
+  
+    @media (max-width: 768px) {
+      height: 200px; // smaller chart on mobile
+    }
+  
+    @media (max-width: 480px) {
+      height: 150px;
+    }
+    // background-color: aqua;
+}

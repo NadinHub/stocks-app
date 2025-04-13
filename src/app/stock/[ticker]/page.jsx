@@ -3,7 +3,7 @@ import { useEffect, useState } from 'react'
 import './page.scss'
 import { useParams } from 'next/navigation'
 import StockInfo from '@/components/stockInfo/StockInfo'
-import StockChart from '@/components/stockChart/StockChart'
+// import StockChart from '@/components/stockChart/StockChart'
 import CandleChart from '@/components/candleChart/CandleChart'
 
 export default function StockPage() {
@@ -48,12 +48,11 @@ export default function StockPage() {
     if (noDataMessage) return <p className="message warning">{noDataMessage}</p>
 
     return (
-        <div data-testid="stock-details" className='stock-page__wrapper'>
+        <main className='stock-page__wrapper' data-testid="stock-details">
             <StockInfo stock={stock} />
-            <main style={{ padding: '2rem' }}>
-                <CandleChart
-                 data={stock.history} />
-            </main>
-        </div>
+            <div className='stock-details__candle'>
+                <CandleChart data={stock.history} />
+            </div>
+        </main>
     )
 }

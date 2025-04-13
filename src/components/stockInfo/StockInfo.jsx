@@ -1,5 +1,4 @@
 'use client'
-
 import './stockInfo.scss'
 
 export default function StockInfo({ stock }) {
