@@ -1,6 +1,5 @@
 'use client'
 import { useEffect, useState } from 'react'
-// import axios from 'axios'
 import './stockInfo.scss'
 
 export default function StockInfo({ ticker }) {
@@ -19,7 +18,6 @@ export default function StockInfo({ ticker }) {
                 const res = await fetch(`${BASE_URL}/stocks/${ticker}`) // FastAPI endpoint
                 if (!res.ok) throw new Error(`HTTP error! status: ${res.status}`)
                 const data = await res.json()
-                console.log('stockdata = ', data)
                 if (!data || Object.keys(data).length === 0) {
                     setNoDataMessage('No data fetched')
                     setStock(null)
@@ -35,10 +33,7 @@ export default function StockInfo({ ticker }) {
             }
         }
         fetchStocksData()
-        // axios.get(`http://localhost:8000/stocks/${ticker}`) // Your FastAPI endpoint
-        //     .then(res => setStock(res.data))
-        //     .catch(err => setError(err.message))
-        //     .finally(() => setLoading(false))
+
     }, [ticker])
 
     if (loading) return <p className="message">Loading...</p>

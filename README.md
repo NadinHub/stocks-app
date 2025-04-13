@@ -24,11 +24,11 @@ Open [http://localhost:3000](http://localhost:3000) with your browser to see the
 For UI testing (E2E testintg) uses Cypress.
 https://docs.cypress.io/app/get-started/open-the-app 
 
-npm install cypress --save-dev
+✅ npm install cypress --save-dev
 OR
 npm install -D cypress
 
-Start server (it needs to cypress works):
+✅ Start server (it needs to cypress works):
 npm run dev
 
 inside a project folder (root) call this command (if there is "cy:open": "cypress open" in Package.json)
