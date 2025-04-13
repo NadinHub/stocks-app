@@ -29,7 +29,7 @@
     gap: 1rem;
     // justify-items: stretch;
     grid-template-columns: 1fr 1fr;
-  
+
   }
 
 }
@@ -82,25 +82,22 @@
 }
 
 .stock__name {
-  // font-family: 'Courier New', Courier, monospace;
-  // font-size: small;
-  // color: rgb(114, 114, 114);
+  margin-bottom: 0.5rem;
 }
 
 .stock__ticker {
-  // font-family: 'Courier New', Courier, monospace;
   color: rgb(114, 114, 114);
-
+  margin-bottom: 0.5rem;
 }
 
 .stock__price {
-  // font-family: 'Courier New', Courier, monospace;
-  // font-size: small;
   color: rgb(114, 114, 114);
 
   span {
     color: black;
     font-family: 'Courier New', Courier, monospace;
+    margin-bottom: 0.3rem;
+    display: block;
   }
 
 }
