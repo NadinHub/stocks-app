@@ -4,8 +4,6 @@ import './stockInfo.scss'
 
 export default function StockInfo({ stock }) {
 
-    console.log('StockInfo | stock = ', stock)
-
     return (
         <main className="stockinfo__container">
             <div className='stockinfo__title'>
