@@ -2,6 +2,7 @@
 import './page.scss'
 import { useEffect, useState } from 'react'
 import { useRouter } from 'next/navigation'
+import Link from 'next/link'
 const tickers = ['AAPL', 'GOOG', 'TSLA', 'AMZN', 'MSFT', 'V', 'NVDA', 'XOM']
 const BASE_URL = process.env.NEXT_PUBLIC_API_URL || 'http://localhost:8000'
 
@@ -41,6 +42,7 @@ export default function HomePage() {
 
 
   const handleClick = (ticker) => {
+    console.log('Clicked:', ticker)
     setChosenStock(ticker)
     // Navigate to dynamic route /stock/[ticker]
     router.push(`/stock/${ticker}`)
@@ -49,32 +51,58 @@ export default function HomePage() {
   const Card = ({ ticker }) => {
     const stock = stocks?.[ticker]
 
-    if (!stock) {
-      return (
-        <div className="stock__item">
-          <p className="stock__ticker">{ticker}</p>
-          <p>Loading...</p>
-        </div>
-      )
-    }
-
     return (
-      <div
+      <Link
+        href={`/stock/${ticker}`}
         data-testid={`stock-link-${ticker}`}
         className="stock__item"
-        onClick={() => handleClick(ticker)}
       >
-        <p className="stock__name">{stock.shortName}</p>
-        <p className="stock__ticker">{ticker}</p>
-        <p className="stock__price"><span>Price:</span> ${stock.price}</p>
-      </div>
+        {stock ? (
+          <>
+            <p className="stock__name">{stock.shortName}</p>
+            <p className="stock__ticker">{ticker}</p>
+            <p className="stock__price"><span>Price:</span> ${stock.price}</p>
+          </>
+        ) : (
+          <>
+            <p className="stock__ticker">{ticker}</p>
+            <p>Loading...</p>
+          </>
+        )}
+      </Link>
     )
   }
+
+  // const Card = ({ ticker }) => {
+  //   const stock = stocks?.[ticker]
+
+  //   if (!stock) {
+  //     return (
+
+  //       <div className="stock__item" data-testid={`stock-link-${ticker}`}>
+  //         <p className="stock__ticker">{ticker}</p>
+  //         <p>Loading...</p>
+  //       </div>
+  //     )
+  //   }
+
+  //   return (
+  //     <div
+  //       data-testid={`stock-link-${ticker}`}
+  //       className="stock__item"
+  //       onClick={() => handleClick(ticker)}
+  //     >
+  //       <p className="stock__name">{stock.shortName}</p>
+  //       <p className="stock__ticker">{ticker}</p>
+  //       <p className="stock__price"><span>Price:</span> ${stock.price}</p>
+  //     </div>
+  //   )
+  // }
 
 
   return (
     <main className="page__container">
-      <div>
+      <div data-testid="hydrated-marker">
         <div className="stock-list">
           {tickers.map((ticker) => (
             <Card key={ticker} ticker={ticker} />

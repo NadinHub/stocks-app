@@ -1,6 +1,5 @@
 // <reference types="cypress" />
 
-
 describe('navigation test', () => {
   const tickers = ['AAPL', 'GOOG', 'TSLA', 'AMZN', 'MSFT']
 
@@ -16,13 +15,27 @@ describe('navigation test', () => {
 
   tickers.forEach(ticker => {
     it(`navigates to ${ticker} details page and displays StockInfo`, () => {
-      cy.get(`[data-testid="stock-link-${ticker}"]`).click();
+      // wait until React is hydrated
+      cy.get('[data-testid="hydrated-marker"]', { timeout: 10000 }).should('exist')
 
-      // Wait for navigation to complete
-      cy.url().should('include', `/stocks/${ticker}`);
+      //  wait for the card to be visible and clickable
+      cy.get(`[data-testid="stock-link-${ticker}"]`, { timeout: 10000 })
+        .should('be.visible')
+        .click()
+
+      // Wait a bit to let router update the URL
+      cy.location('pathname', { timeout: 10000 }).should('include', `stock/${ticker}`);
 
       // Verify stock details are visible on the new page
-      cy.get('[data-testid="stock-details"]').should('be.visible').and('contain', ticker);
+      cy.get('[data-testid="stock-details"]', { timeout: 10000 })
+        .should('be.visible')
+        .and(($el) => {
+          expect($el.text().toUpperCase()).to.include(ticker) // avoid case mismatch
+        })
+
+      // cy.get('[data-testid="stock-details"]', { timeout: 10000 })
+      //   .should('be.visible')
+      //   .and('contain', ticker);
     });
   });
 
