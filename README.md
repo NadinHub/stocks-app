@@ -1,8 +1,8 @@
 This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
 
-## Getting Started
+## ✅ Getting Started
 
-First, run the development server:
+### Run the development server:
 
 ```bash
 npm run dev
@@ -14,27 +14,28 @@ pnpm dev
 bun dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+### Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
 
 
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-.env.local and .env.production were included in purpose in git/github, because it's a test project. In real-life projects they are not included in git/github.
+
+## TEST
 
 For UI testing (E2E testintg) uses Cypress.
 https://docs.cypress.io/app/get-started/open-the-app 
 
-✅ npm install cypress --save-dev
+### 1. Install Cypress
+```npm install cypress --save-dev```
 OR
-npm install -D cypress
+```npm install -D cypress```
 
-✅ Start server (it needs to cypress works):
-npm run dev
+### 2. Start server (it needs to cypress works):
+```npm run dev```
 
-inside a project folder (root) call this command (if there is "cy:open": "cypress open" in Package.json)
-npm run cy:open
+### 3. inside a project folder (root) call this command (if there is "cy:open": "cypress open" in Package.json)
+```npm run cy:open```
 OR
-npm run cypress:open
+```npm run cypress:open```
 
 The launchpad will be opened to test.
 
@@ -42,12 +43,17 @@ To test useing Cypress the app should be running (npm run dev).
 
 https://docs.cypress.io/app/end-to-end-testing/writing-your-first-end-to-end-test 
 
+
+## Comments
+
+.env.local and .env.production
+were included in purpose in git/github, because it's a test project. In real-life projects they are not included in git/github.
+
 For unit testing - Vitest: npm i -D vitest
 in package.json: "test": "vitest"
 Unit test is not implemented in the project.
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-Imformation about Yahoo Finance API (ticker - info)
+### Imformation about Yahoo Finance API (ticker - info)
 https://yfinance-python.org/reference/api/yfinance.Ticker.html#yfinance.Ticker
 
 The example of the data recieving from Yahoo Finance API (ticker - info):
